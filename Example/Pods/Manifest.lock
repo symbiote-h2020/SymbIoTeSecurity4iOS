@@ -1,0 +1,32 @@
+PODS:
+  - AsyncSwift (2.0.4)
+  - SwiftyJSON (4.1.0)
+  - SymbioteIosUtils (0.1.0):
+    - AsyncSwift
+  - SymbioteSecurity4iOS (0.1.0):
+    - AsyncSwift
+    - SwiftyJSON
+    - SymbioteIosUtils
+
+DEPENDENCIES:
+  - SymbioteSecurity4iOS (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AsyncSwift
+    - SwiftyJSON
+    - SymbioteIosUtils
+
+EXTERNAL SOURCES:
+  SymbioteSecurity4iOS:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  SymbioteIosUtils: 27dd96c34e075c90c13d88fa57f63db2b1f45321
+  SymbioteSecurity4iOS: c3aacef9cc7e09a7b9da6a1a4f8dd84455c65045
+
+PODFILE CHECKSUM: 12e8728e09d248b9694772071b4ff0b69df4f231
+
+COCOAPODS: 1.5.3

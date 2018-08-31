@@ -1,0 +1,6 @@
+framework module SymbioteSecurity4iOS {
+  umbrella header "SymbioteSecurity4iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SymbioteSecurity4iOS_Example' do
+  pod 'SymbioteSecurity4iOS', :path => '../'
+
+  target 'SymbioteSecurity4iOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
