@@ -10,9 +10,9 @@ import Foundation
 import SwiftyJSON
 
 public class Aam {
-    var aamInstanceId: String = ""
-    var aamAddress: String = ""
-    var aamInstanceFriendlyName: String = ""
+    public var aamInstanceId: String = ""
+    public var aamAddress: String = ""
+    public var aamInstanceFriendlyName: String = ""
     //private final Certificate aamCACertificate;
     //private final Map<String, Certificate> componentCertificates;
     

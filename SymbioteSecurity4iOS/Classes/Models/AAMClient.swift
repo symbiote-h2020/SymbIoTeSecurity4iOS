@@ -10,9 +10,9 @@ import Foundation
 import SymbioteIosUtils
 
 public class AAMClient {
-    var serverAddress: String
+    public var serverAddress: String
     
-    init(_ baseUrl: String) {
+    public init(_ baseUrl: String) {
         self .serverAddress = baseUrl
     }
     
@@ -49,7 +49,7 @@ public class AAMClient {
         return guestToken
     }
     
-    func getHomeToken(_ loginRequest: String) -> String {
+    public func getHomeToken(_ loginRequest: String) -> String {
         return "TODO"
     }
 }

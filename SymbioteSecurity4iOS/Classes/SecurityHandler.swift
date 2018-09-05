@@ -20,8 +20,8 @@ public class SecurityHandler {
     private var homeAAMAddress: String
     private var platformId: String
     
-    var coreAAM: Aam?
-    var availableAams = [String:Aam]()
+    public var coreAAM: Aam?
+    public var availableAams = [String:Aam]()
     
     
     struct KeyPair {
@@ -41,7 +41,7 @@ public class SecurityHandler {
         }()
     }
     
-    init(homeAAMAddress: String, platformId: String = "") {
+    public init(homeAAMAddress: String, platformId: String = "") {
         self.homeAAMAddress = homeAAMAddress
         self.platformId = platformId
     }
