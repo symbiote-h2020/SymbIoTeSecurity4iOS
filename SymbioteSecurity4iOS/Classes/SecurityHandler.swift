@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 import SymbioteIosUtils
-//import CertificateSigningRequestSwift
+import iOSCSRSwift
 
 /**
   SecurityHandler class is designe to work exactly as its counterpart on android /java code
@@ -143,7 +143,7 @@ public class SecurityHandler {
         return aams
     }
     
-    /*
+    
     /// declaration of this function in java is: public Certificate getCertificate(AAM homeAAM, String username, String password, String clientId)
     public func getCertificate(aam: Aam, username: String, password: String, clientId: String) -> String {
         var certyficateString = ""
@@ -193,7 +193,7 @@ public class SecurityHandler {
         var privateKey: SecKey?
         var publicKeyBits: Data?
         
-        let keyAlgorithm = KeyAlgorithm.ec(signatureType: .sha256)
+        //let keyAlgorithm = KeyAlgorithm.ec(signatureType: .sha256)
         
         do {
             privateKey = try SecurityHandler.KeyPair.manager.privateKey().underlying
@@ -205,19 +205,50 @@ public class SecurityHandler {
         publicKeyBits = try! SecurityHandler.KeyPair.manager.publicKey().data().raw
         
         //Initiale CSR
-        let csr = CertificateSigningRequest(commonName: cn, organizationName: nil, organizationUnitName: nil, countryName: nil, stateOrProvinceName: nil, localityName: nil, keyAlgorithm: keyAlgorithm)
+        let csr: CertificateSigningRequest = CertificateSigningRequest(commonName: cn, organizationName: nil, organizationUnitName: nil, countryName: nil, cryptoAlgorithm: CryptoAlgorithm.sha256)
 
         
-        guard let csrBuild2 = csr.buildCSRAndReturnString(publicKeyBits!, privateKey: privateKey!) else {
+        guard let buildData = csr.build(publicKeyBits!, privateKey: privateKey!) else {
             return ""
         }
-        logVerbose("CSR string with header and footer")
-        logVerbose(csrBuild2)
+        let csrString = csrDataToEncodedString(buildData)
         
-        return csrBuild2
+        logVerbose("CSR string with header and footer")
+        logVerbose(csrString)
+        
+        return csrString
         
     }
-    */
+    
+    private func csrDataToEncodedString(_ buildData: Data) -> String{
+        guard let csrString = buildData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0)).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
+            return "error"
+        }
+        let head = "-----BEGIN CERTIFICATE REQUEST-----\n";
+        let foot = "-----END CERTIFICATE REQUEST-----\n";
+        var isMultiple = false;
+        var newCSRString = head;
+    
+        //Check if string size is a multiple of 64
+        if (csrString.count % 64 == 0){
+            isMultiple = true;
+        }
+    
+        for (i, char) in csrString.enumerated() {
+            newCSRString.append(char)
+    
+            if ((i != 0) && ((i+1) % 64 == 0)){
+                newCSRString.append("\n")
+            }
+            if ((i == csrString.count-1) && !isMultiple){
+                newCSRString.append("\n")
+            }
+        }
+    
+        newCSRString = newCSRString+foot
+    
+        return newCSRString
+    }
     
     public func loginAsGuest(_ aam: Aam) -> String {
         let aamClient = AAMClient(aam.aamAddress)

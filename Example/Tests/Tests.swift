@@ -39,8 +39,8 @@ class Tests: XCTestCase {
         }
         
         if let homeAam = coreAam {
-           //TODO let certStr = clientSH.getCertificate(aam: homeAam, username: icomUsername, password: icomPassword, clientId: "clientId")  //motyla noga - czy tu ma być "clientId"
-           //problem with 3rd-party library XCTAssert(certStr.hasPrefix("-----BEGIN CERTIFICATE-----"), "Wrong certificate string ")
+           let certStr = clientSH.getCertificate(aam: homeAam, username: icomUsername, password: icomPassword, clientId: "clientId")  //motyla noga - czy tu ma być "clientId"
+           XCTAssert(certStr.hasPrefix("-----BEGIN CERTIFICATE-----"), "Wrong certificate string ")
         }
     }
     
