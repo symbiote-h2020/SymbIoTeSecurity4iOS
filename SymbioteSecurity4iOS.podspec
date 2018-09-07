@@ -43,4 +43,5 @@ TODO: Add long description of the pod here.
   s.dependency 'SwiftyJSON'
   s.dependency 'SymbioteIosUtils'
   #s.dependency 'CertificateSigningRequestSwift' //TODO this does not work as pod :-/
+  s.dependency 'iOSCSRSwift'
 end
