@@ -42,6 +42,6 @@ TODO: Add long description of the pod here.
   s.dependency 'AsyncSwift'
   s.dependency 'SwiftyJSON'
   s.dependency 'SymbioteIosUtils'
-  s.dependency 'CertificateSigningRequestSwift'
-  s.dependency 'iOSCSRSwift'  #test version of CSR lib
+  s.dependency 'CertificateSigningRequestSwift', '0.0.991'
+  s.dependency 'iOSCSRSwift'
 end

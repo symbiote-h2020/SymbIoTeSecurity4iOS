@@ -194,7 +194,7 @@ public class SecurityHandler {
         var privateKey: SecKey?
         var publicKeyBits: Data?
         
-        //let keyAlgorithm = KeyAlgorithm.ec(signatureType: .sha256)
+        let keyAlgorithm = KeyAlgorithm.ec(signatureType: .sha256)
         
         do {
             privateKey = try SecurityHandler.KeyPair.manager.privateKey().underlying
@@ -206,18 +206,26 @@ public class SecurityHandler {
         publicKeyBits = try! SecurityHandler.KeyPair.manager.publicKey().data().raw
         
         //Initiale CSR
-        let csr: CertificateSigningRequest = CertificateSigningRequest(commonName: cn, organizationName: nil, organizationUnitName: nil, countryName: nil, cryptoAlgorithm: CryptoAlgorithm.sha256)
+        //let csr: CertificateSigningRequest = CertificateSigningRequest(commonName: cn, organizationName: nil, organizationUnitName: nil, countryName: nil, cryptoAlgorithm: CCHmacAlgorithm.sha256)
 
+        let csr = CertificateSigningRequest(commonName: cn, organizationName: nil, organizationUnitName: nil, countryName: nil, stateOrProvinceName: nil, localityName: nil, keyAlgorithm: keyAlgorithm)
         
-        guard let buildData = csr.build(publicKeyBits!, privateKey: privateKey!) else {
+//        guard let buildData = csr.build(publicKeyBits!, privateKey: privateKey!) else {
+//            return ""
+//        }
+//        let csrString = csrDataToEncodedString(buildData)
+//
+//        logVerbose("CSR string with header and footer")
+//        logVerbose(csrString)
+//
+//        return csrString
+        guard let csrBuild2 = csr.buildCSRAndReturnString(publicKeyBits!, privateKey: privateKey!) else {
             return ""
         }
-        let csrString = csrDataToEncodedString(buildData)
+        print("CSR string with header and footer")
+        print(csrBuild2)
         
-        logVerbose("CSR string with header and footer")
-        logVerbose(csrString)
-        
-        return csrString
+        return csrBuild2
         
     }
     
