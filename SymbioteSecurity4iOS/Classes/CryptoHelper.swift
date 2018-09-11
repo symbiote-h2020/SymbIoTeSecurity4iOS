@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import iOSCSRSwift
+//import CertificateSigningRequestSwift
 
 public class CryptoHelper {
     public static func buildHomeTokenAcquisitionRequest(_ homeCredentials: HomeCredentials ) -> String{

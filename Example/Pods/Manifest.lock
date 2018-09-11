@@ -1,11 +1,13 @@
 PODS:
   - AsyncSwift (2.0.4)
+  - CertificateSigningRequestSwift (0.0.992)
   - iOSCSRSwift (0.0.992)
   - SwiftyJSON (4.1.0)
   - SymbioteIosUtils (0.1.0):
     - AsyncSwift
   - SymbioteSecurity4iOS (0.1.1):
     - AsyncSwift
+    - CertificateSigningRequestSwift
     - iOSCSRSwift
     - SwiftyJSON
     - SymbioteIosUtils
@@ -16,6 +18,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AsyncSwift
+    - CertificateSigningRequestSwift
     - iOSCSRSwift
     - SwiftyJSON
     - SymbioteIosUtils
@@ -26,10 +29,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
+  CertificateSigningRequestSwift: 952e8589b70f90d2225b0586bd25a282855ac6eb
   iOSCSRSwift: 8ef1a929a73cf85276e6196e3e7d52badbf829cd
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SymbioteIosUtils: 27dd96c34e075c90c13d88fa57f63db2b1f45321
-  SymbioteSecurity4iOS: 74785deea39a95eb94630634b3af032a8dbd130c
+  SymbioteSecurity4iOS: caee3d6bd21416018ab0421b1cb8b1179b06efdd
 
 PODFILE CHECKSUM: 12e8728e09d248b9694772071b4ff0b69df4f231
 
