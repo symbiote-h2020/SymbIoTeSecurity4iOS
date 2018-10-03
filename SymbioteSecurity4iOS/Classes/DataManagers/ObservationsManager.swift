@@ -11,7 +11,13 @@ import SwiftyJSON
 import SymbioteIosUtils
 
 public class ObservationsManager {
-    public init() {}
+    public var aamClient: AAMClient
+    public var coreInterfaceUrl = ""
+    
+    public init(coreUrl: String = "https://symbiote-open.man.poznan.pl/coreInterface") {
+        self.coreInterfaceUrl = coreUrl
+        aamClient = AAMClient(coreUrl)
+    }
     
     public var currentObservations: [Observation] = [Observation]()
     public var observationsByLocation: [String: [Observation]] = [String: [Observation]]()
@@ -31,7 +37,7 @@ public class ObservationsManager {
         }
     }
     
-    //use only inside SSP
+    ///use only inside SSP
     func makeRequestForSSPObservations(_ forDeviceId: String!) -> NSMutableURLRequest? {
         if let devId = forDeviceId {
             let strUrl =  "\(GlobalSettings.restApiUrl)/rap/Sensor('\(devId)')/Observations"  ///Observations?$top=1")
@@ -62,7 +68,7 @@ public class ObservationsManager {
             request.httpMethod = "GET"
             request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
             request.setValue("1", forHTTPHeaderField: "x-auth-size")
-            //TODO request.setValue(GuestTokensManager.shared.makeXAuth1CoreRequestHeader(), forHTTPHeaderField: "x-auth-1")
+            request.setValue(aamClient.buildXauth1HeaderWithGuestToken(), forHTTPHeaderField: "x-auth-1")
             
             return request
         }

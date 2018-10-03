@@ -11,7 +11,13 @@ import SwiftyJSON
 import SymbioteIosUtils
 
 public class ActuatorManager {
-    public init() {}
+    public var aamClient: AAMClient
+    public var coreInterfaceUrl = ""
+    
+    public init(coreUrl: String = "https://symbiote-open.man.poznan.pl/coreInterface") {
+        self.coreInterfaceUrl = coreUrl
+        aamClient = AAMClient(coreUrl)
+    }
     
     public func sendRequest(_ smartDeviceId: String, capability: Capability, valuesList: [ActuatorsValue]) {
         let strUrl = GlobalSettings.restApiUrl + "/rap/Actuator/" + smartDeviceId
@@ -23,7 +29,7 @@ public class ActuatorManager {
         request.httpMethod = "POST"
         request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
         request.setValue("1", forHTTPHeaderField: "x-auth-size")
-        //TODO request.setValue(GuestTokensManager.shared.makeXAuth1SSPRequestHeader(), forHTTPHeaderField: "x-auth-1")
+        request.setValue(aamClient.buildXauth1HeaderWithGuestToken(), forHTTPHeaderField: "x-auth-1")
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
