@@ -10,6 +10,23 @@ import Foundation
 import SwiftyJSON
 import SymbioteIosUtils
 
+
+public class QueryParameters {
+    public var platform_id:           String?
+    public var platform_name:         String?
+    public var owner:                 String?
+    public var name:                  String?
+    public var id:                    String?
+    public var description:           String?
+    public var location_name:         String?
+    public var location_lat:          Double?
+    public var location_long:         Double?
+    public var max_distance:          Int?
+    public var observed_property:     [String]?
+    public var resource_type:         String?
+    public var should_rank:           Bool?
+}
+
 public class SearchResourcesManager {
     
     public var devicesList: [SmartDevice] = []
@@ -23,16 +40,25 @@ public class SearchResourcesManager {
     }
     
 
-    public func buildQueryUrl() -> String {
-        //TODO add all parameters
-        return "https://symbiote-open.man.poznan.pl/coreInterface/query"
+    public func buildQueryUrl(_ params: [String:String]) -> URL? {
+        var urlComp = URLComponents(string: "https://symbiote-open.man.poznan.pl/coreInterface/query")!
+        urlComp.queryItems = [URLQueryItem]()
+        for p in params.keys {
+            let qItem = URLQueryItem(name: p, value: params[p])
+            urlComp.queryItems?.append(qItem)
+        }
+        
+        return urlComp.url
     }
     
-    public func getCoreResourcesList() {
-        let strUrl = buildQueryUrl()
+    public func getCoreResourcesList(_ params: [String:String]) {
+        guard let url = buildQueryUrl(params) else {
+            let notiInfoObj  = NotificationInfo(type: ErrorType.connection, info: "empty query url")
+            NotificationCenter.default.postNotificationName(SymNotificationName.DeviceListLoaded, object: notiInfoObj)
+            return
+        }
         
-        let url = URL(string: strUrl)
-        let request = NSMutableURLRequest(url: url!)
+        let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")

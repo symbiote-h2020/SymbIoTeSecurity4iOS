@@ -55,9 +55,18 @@ class ViewController: UIViewController {
     }
     
     
+    private func buildParamsFromTextBoxes() -> [String:String] {
+        var dict = [String:String]()
+        let nameParam = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if nameParam?.isEmpty == false {
+            dict["name"] = nameParam
+        }
+        return dict
+    }
+    
     @IBAction func searchButtonTapped(_ sender: Any) {
         let srm = SearchResourcesManager()
-        srm.getCoreResourcesList()
+        srm.getCoreResourcesList(buildParamsFromTextBoxes())
     }
 }
 
