@@ -31,7 +31,7 @@ public class ObservationsManager {
         }
     }
     
-    
+    //use only inside SSP
     func makeRequestForSSPObservations(_ forDeviceId: String!) -> NSMutableURLRequest? {
         if let devId = forDeviceId {
             let strUrl =  "\(GlobalSettings.restApiUrl)/rap/Sensor('\(devId)')/Observations"  ///Observations?$top=1")

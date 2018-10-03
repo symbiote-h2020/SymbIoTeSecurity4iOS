@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SymbioteSecurity4iOS
 
 class ViewController: UIViewController {
 
@@ -55,8 +56,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func searchButtonTapped(_ sender: Any) {
-        
-        
+        let srm = SearchResourcesManager()
+        srm.getCoreResourcesList()
     }
 }
 

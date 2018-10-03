@@ -8,6 +8,7 @@
 
 import Foundation
 import SymbioteIosUtils
+import SwiftyJSON
 
 public class AAMClient {
     public var serverAddress: String
@@ -49,7 +50,21 @@ public class AAMClient {
         return guestToken
     }
     
+    public func buildXauth1HeaderWithGuestToken() -> String {
+        let json = JSON(
+            ["token":getGuestToken(),
+             "authenticationChallenge":"",
+             "clientCertificate":"",
+             "clientCertificateSigningAAMCertificate":"",
+             "foreignTokenIssuingAAMCertificate":""
+            ]
+        )
+        
+        log(json.rawString(options: []))
+        return json.rawString(options: []) ?? "couldn't build request json"
+    }
+    
     public func getHomeToken(_ loginRequest: String) -> String {
-        return "TODO"
+        return "JWT library not found"
     }
 }
