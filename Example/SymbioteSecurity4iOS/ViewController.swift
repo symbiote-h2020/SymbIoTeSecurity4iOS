@@ -12,6 +12,8 @@ import SymbioteSecurity4iOS
 class ViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var locationNameTextField: UITextField!
+    @IBOutlet weak var platformNameTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     
@@ -60,6 +62,16 @@ class ViewController: UIViewController {
         let nameParam = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if nameParam?.isEmpty == false {
             dict["name"] = nameParam
+        }
+        
+        let locationName = locationNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if locationName?.isEmpty == false {
+            dict["locationName"] = locationName
+        }
+        
+        let platformName = platformNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if platformName?.isEmpty == false {
+            dict["platformName"] = platformName
         }
         return dict
     }

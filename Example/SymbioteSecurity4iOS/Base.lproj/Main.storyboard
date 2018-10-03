@@ -41,22 +41,62 @@
                                     <action selector="searchButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qAm-x9-Yrz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platform Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTq-iK-vnJ">
+                                <rect key="frame" x="16" y="111" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dGA-Po-q2m">
+                                <rect key="frame" x="16" y="140" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-an-hgd">
+                                <rect key="frame" x="16" y="194" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hkz-Fm-DIN">
+                                <rect key="frame" x="16" y="223" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0Uy-L9-R4Z" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="1yl-nm-I40"/>
+                            <constraint firstItem="0AM-an-hgd" firstAttribute="top" secondItem="dGA-Po-q2m" secondAttribute="bottom" constant="24" id="2bA-nd-Kye"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pMx-0D-NYf" secondAttribute="bottom" constant="24" id="5VO-9D-DeG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0Uy-L9-R4Z" secondAttribute="trailing" id="ATf-G2-PAT"/>
+                            <constraint firstItem="Hkz-Fm-DIN" firstAttribute="top" secondItem="0AM-an-hgd" secondAttribute="bottom" constant="8" id="G2I-xF-wh4"/>
+                            <constraint firstItem="Hkz-Fm-DIN" firstAttribute="top" secondItem="0AM-an-hgd" secondAttribute="bottom" constant="8" id="MED-3Q-CIw"/>
+                            <constraint firstItem="dGA-Po-q2m" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="MSi-0E-Min"/>
+                            <constraint firstItem="Hkz-Fm-DIN" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="QOT-Nw-E4w"/>
+                            <constraint firstItem="dGA-Po-q2m" firstAttribute="top" secondItem="LTq-iK-vnJ" secondAttribute="bottom" constant="8" id="QPX-wT-hwS"/>
+                            <constraint firstItem="LTq-iK-vnJ" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="QdX-qD-t9h"/>
+                            <constraint firstItem="LTq-iK-vnJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Zbs-90-Xti"/>
+                            <constraint firstItem="0AM-an-hgd" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="Ztt-5z-RsM"/>
+                            <constraint firstItem="dGA-Po-q2m" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="elX-oi-mOl"/>
                             <constraint firstItem="pMx-0D-NYf" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="fIj-1Q-0Ki"/>
+                            <constraint firstItem="dGA-Po-q2m" firstAttribute="top" secondItem="LTq-iK-vnJ" secondAttribute="bottom" constant="8" id="fQ8-Va-un3"/>
                             <constraint firstItem="Zrc-Ej-GkN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="fcF-T9-X0W"/>
+                            <constraint firstItem="LTq-iK-vnJ" firstAttribute="top" secondItem="0Uy-L9-R4Z" secondAttribute="bottom" constant="24" id="m4i-z0-4j0"/>
+                            <constraint firstItem="Hkz-Fm-DIN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="pSr-zu-23G"/>
                             <constraint firstItem="0Uy-L9-R4Z" firstAttribute="top" secondItem="Zrc-Ej-GkN" secondAttribute="bottom" constant="8" id="vX1-bK-3XN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Zrc-Ej-GkN" secondAttribute="trailing" id="wY8-p9-CdM"/>
+                            <constraint firstItem="0AM-an-hgd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="x7n-mG-v0v"/>
                             <constraint firstItem="Zrc-Ej-GkN" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="ynS-f7-RNn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="keyboardHeightLayoutConstraint" destination="5VO-9D-DeG" id="2rH-AV-27w"/>
+                        <outlet property="locationNameTextField" destination="Hkz-Fm-DIN" id="fal-Bp-sCi"/>
                         <outlet property="nameTextField" destination="0Uy-L9-R4Z" id="sWf-z4-ZcX"/>
+                        <outlet property="platformNameTextField" destination="dGA-Po-q2m" id="3SR-wF-xZD"/>
                         <outlet property="searchButton" destination="pMx-0D-NYf" id="gCv-Yj-lYN"/>
                     </connections>
                 </viewController>
