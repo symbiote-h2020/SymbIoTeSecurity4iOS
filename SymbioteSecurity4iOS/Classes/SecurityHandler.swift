@@ -275,7 +275,7 @@ public class SecurityHandler {
         let loginRequest = CryptoHelper.buildHomeTokenAcquisitionRequest(homeCredentials)
         var homeToken = aamClient.getHomeToken(loginRequest)
         
-        return ""
+        return homeToken
     }
     
 
