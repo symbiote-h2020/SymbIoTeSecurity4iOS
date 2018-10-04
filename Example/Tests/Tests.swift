@@ -41,6 +41,9 @@ class Tests: XCTestCase {
         if let homeAam = coreAam {
            let certStr = clientSH.getCertificate(aam: homeAam, username: icomUsername, password: icomPassword, clientId: "clientId")  //motyla noga - czy tu ma być "clientId"
            XCTAssert(certStr.hasPrefix("-----BEGIN CERTIFICATE-----"), "Wrong certificate string ")
+            
+            let loginToken = clientSH.login(homeAam)
+          logWarn("========login token = \(loginToken)")
         }
     }
     

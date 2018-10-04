@@ -46,6 +46,7 @@
 		769DEBB02164BEDC0065F2E0 /* CertificateSigningRequestSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 769DEBAA2164BE670065F2E0 /* CertificateSigningRequestSwift.h */; };
 		769DEBB12164BEE00065F2E0 /* CertificateSigningRequestSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBAB2164BE670065F2E0 /* CertificateSigningRequestSwift.swift */; };
 		769DEBB22164BEE30065F2E0 /* CertificateSigningRequestSwiftConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBAC2164BE670065F2E0 /* CertificateSigningRequestSwiftConstants.swift */; };
+		769DEBBC2166107C0065F2E0 /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBBB2166107B0065F2E0 /* JWT.swift */; };
 		7841DA5B14A565E3D1EEDF49A89E20EE /* GlobalSettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB71E6ACAB9AE1C482B337DF5C3774F /* GlobalSettingsContainer.swift */; };
 		79841866AA9E1C25D5A84CBE822119DB /* iOSCSRSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C972FC7E57715D29F722E09BC51A674 /* iOSCSRSwift-dummy.m */; };
 		7B2098D0752FF5647DBFF7B72472CBCB /* AAMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F302CC508D08FED836584E59AE598A /* AAMClient.swift */; };
@@ -260,6 +261,7 @@
 		769DEBAA2164BE670065F2E0 /* CertificateSigningRequestSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateSigningRequestSwift.h; sourceTree = "<group>"; };
 		769DEBAB2164BE670065F2E0 /* CertificateSigningRequestSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateSigningRequestSwift.swift; sourceTree = "<group>"; };
 		769DEBAC2164BE670065F2E0 /* CertificateSigningRequestSwiftConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateSigningRequestSwiftConstants.swift; sourceTree = "<group>"; };
+		769DEBBB2166107B0065F2E0 /* JWT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
 		78B87728F80DF4C763A5503B834E9C59 /* CommonRandom.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CommonRandom.h; path = CommonCrypto/Platforms/iPhoneOS/CommonCrypto/CommonRandom.h; sourceTree = "<group>"; };
 		793FE58E9DC6BD067F91B9D748E46898 /* AsyncSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AsyncSwift-dummy.m"; sourceTree = "<group>"; };
 		7B51F8B89C83AF97B04107DB45D2AB35 /* SymbioteIosUtils-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SymbioteIosUtils-prefix.pch"; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 		735E1F579894B161CB349F76C155C700 /* SymbioteSecurity4iOS */ = {
 			isa = PBXGroup;
 			children = (
+				769DEBBA2166107B0065F2E0 /* JWT */,
 				769DEBA92164BE670065F2E0 /* CSR */,
 				A79FDF1A79F2AD29157071F28336BE41 /* CryptoHelper.swift */,
 				55CBED5B94C3B335A47B59AD26F40B25 /* SecurityHandler.swift */,
@@ -604,6 +607,15 @@
 			);
 			name = CSR;
 			path = SymbioteSecurity4iOS/Classes/CSR;
+			sourceTree = "<group>";
+		};
+		769DEBBA2166107B0065F2E0 /* JWT */ = {
+			isa = PBXGroup;
+			children = (
+				769DEBBB2166107B0065F2E0 /* JWT.swift */,
+			);
+			name = JWT;
+			path = SymbioteSecurity4iOS/Classes/JWT;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -1155,6 +1167,7 @@
 				2FAFB020DE715255511091024D833041 /* CryptoHelper.swift in Sources */,
 				7C23E33518FE745D393FA0B3F493E99A /* EllipticCurveKeyPair.swift in Sources */,
 				85A4C01909907BC85F4D889AEACC3CBB /* HomeCredentials.swift in Sources */,
+				769DEBBC2166107C0065F2E0 /* JWT.swift in Sources */,
 				9970B56D922D61C3FA751AC2EAF20CC2 /* ObservationsManager.swift in Sources */,
 				69AE006954E7545400F15413D3D53FCB /* SearchResourcesManager.swift in Sources */,
 				5ACC438F7F586F2FDA725A53C0A74DEB /* SecurityHandler.swift in Sources */,

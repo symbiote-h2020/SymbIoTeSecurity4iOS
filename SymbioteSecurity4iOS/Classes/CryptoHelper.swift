@@ -10,7 +10,23 @@ import Foundation
 //import CertificateSigningRequestSwift
 
 public class CryptoHelper {
+    
+    
+    
     public static func buildHomeTokenAcquisitionRequest(_ homeCredentials: HomeCredentials ) -> String{
-        return "TODO JWT"
+        let manager = SecurityHandler.KeyPair.manager
+        //try? manager.deleteKeyPair()
+        
+        
+        let expirationTime: TimeInterval = 60000
+        let jwt = JWT(issuer: "testusername", subject: "testclientid", keysManager: manager)
+        let token = jwt.createToken(expiresAfter: expirationTime)
+        
+//        let pk = try! manager.publicKey()
+//        let pkdata = try! pk.data()
+//        print(pkdata.PEM)
+        
+        
+        return token
     }
 }

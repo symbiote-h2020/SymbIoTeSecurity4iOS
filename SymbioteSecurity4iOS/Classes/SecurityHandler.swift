@@ -273,7 +273,12 @@ public class SecurityHandler {
 
         let homeCredentials = HomeCredentials()
         let loginRequest = CryptoHelper.buildHomeTokenAcquisitionRequest(homeCredentials)
-        var homeToken = aamClient.getHomeToken(loginRequest)
+        logVerbose("======= login reguest = \(loginRequest)")
+        
+        let homeToken = aamClient.getHomeToken(loginRequest)
+        
+        
+        
         
         return homeToken
     }
