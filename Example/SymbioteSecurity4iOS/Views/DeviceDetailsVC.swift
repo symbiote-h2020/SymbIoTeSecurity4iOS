@@ -132,7 +132,7 @@ class DeviceDetailsVC: UIViewController {
     
     //MARK - storybord management
     static func getViewController() -> DeviceDetailsVC {
-        let storyboard = UIStoryboard(name: "SearchDevices", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "DeviceDetailsVC")
         return controller as! DeviceDetailsVC
     }
