@@ -37,11 +37,10 @@ public class ObservationsManager {
         }
     }
     
-    ///use only inside SSP
+    ///use only inside SSP to combine L1 and L3/L4 devices on one list
     func makeRequestForSSPObservations(_ forDeviceId: String!) -> NSMutableURLRequest? {
         if let devId = forDeviceId {
             let strUrl =  "\(GlobalSettings.restApiUrl)/rap/Sensor('\(devId)')/Observations"  ///Observations?$top=1")
-            // let strUrl =  "\(Constants.restApiUrl)/rap/Sensor/\(devId)/Observations"  ///"The URI is malformed""
             //let strTestUrl =   "http://217.72.97.9:8080/rap/Sensor('1')/Observations" //test
             log(strUrl)
             let url = URL(string: strUrl)
@@ -49,7 +48,7 @@ public class ObservationsManager {
             request.httpMethod = "GET"
             request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
             request.setValue("1", forHTTPHeaderField: "x-auth-size")
-            //TODO request.setValue(GuestTokensManager.shared.makeXAuth1SSPRequestHeader(), forHTTPHeaderField: "x-auth-1")
+            request.setValue(aamClient.buildXauth1HeaderWithGuestToken(), forHTTPHeaderField: "x-auth-1")
             
             return request
         }

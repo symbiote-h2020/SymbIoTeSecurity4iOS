@@ -14,6 +14,9 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		769DEBB72165E4380065F2E0 /* DeviceDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBB42165E4380065F2E0 /* DeviceDetailsVC.swift */; };
+		769DEBB82165E4380065F2E0 /* DevicesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBB52165E4380065F2E0 /* DevicesListVC.swift */; };
+		769DEBB92165E4380065F2E0 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBB62165E4380065F2E0 /* DeviceTableViewCell.swift */; };
 		9DDE46BA84F31162F6274C55 /* Pods_SymbioteSecurity4iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1ED20D7A0F0B5188FEF77C /* Pods_SymbioteSecurity4iOS_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,9 @@
 		607FACE51AFB9204008FA782 /* SymbioteSecurity4iOS_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbioteSecurity4iOS_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		769DEBB42165E4380065F2E0 /* DeviceDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsVC.swift; sourceTree = "<group>"; };
+		769DEBB52165E4380065F2E0 /* DevicesListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesListVC.swift; sourceTree = "<group>"; };
+		769DEBB62165E4380065F2E0 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		B37E78905E11B32352287EB3 /* Pods_SymbioteSecurity4iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SymbioteSecurity4iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F1D3DE8B54E17F3235AF3F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F75D8CC64C3F0346F6E64826 /* Pods-SymbioteSecurity4iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SymbioteSecurity4iOS_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SymbioteSecurity4iOS_Example/Pods-SymbioteSecurity4iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 		607FACD21AFB9204008FA782 /* Example for SymbioteSecurity4iOS */ = {
 			isa = PBXGroup;
 			children = (
+				769DEBB32165E4380065F2E0 /* Views */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -157,6 +164,16 @@
 				133D0D4A6CBB173C257ADD12 /* Pods-SymbioteSecurity4iOS_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		769DEBB32165E4380065F2E0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				769DEBB42165E4380065F2E0 /* DeviceDetailsVC.swift */,
+				769DEBB52165E4380065F2E0 /* DevicesListVC.swift */,
+				769DEBB62165E4380065F2E0 /* DeviceTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,7 +347,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769DEBB92165E4380065F2E0 /* DeviceTableViewCell.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				769DEBB72165E4380065F2E0 /* DeviceDetailsVC.swift in Sources */,
+				769DEBB82165E4380065F2E0 /* DevicesListVC.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
