@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var waitingActivityIndicator: UIActivityIndicatorView!
     
+    let srm = SearchResourcesManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,7 +49,7 @@ class ViewController: UIViewController {
         let notInfo = NotificationInfo(object: notification.object as AnyObject?)
         if notInfo.errorType == .noErrorSuccessfulFinish {
             let vc = DevicesListVC.getViewController()
-            //vc.detailItem = selectedDevice
+            vc.deviceObjects = srm.devicesList
             navigationController?.pushViewController(vc, animated: true)
         }
         else {
@@ -98,7 +100,7 @@ class ViewController: UIViewController {
     
     @IBAction func searchButtonTapped(_ sender: Any) {
         waitingActivityIndicator.isHidden = false
-        let srm = SearchResourcesManager()
+        
         srm.getCoreResourcesList(buildParamsFromTextBoxes())
     }
 }
