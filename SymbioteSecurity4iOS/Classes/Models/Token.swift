@@ -8,18 +8,18 @@
 
 import Foundation
 
-/**
- * Class that defines the SymbIoTe JWS token
- * <p>
- *
- * @see eu.h2020.symbiote.security.commons.jwt.JWTClaims
- */
+
+public enum TokenType {
+    case HOME
+    case FOREIGN
+    case GUEST
+    case NULL
+}
+
 public class Token {
     
     public var id: String = "";
     public var token: String = "";
-   // private Type type = Type.NULL;
-    
-    //@Transient
-    //private Claims claims;
+    public var tokenType = TokenType.NULL;
+    public var authenticationChallenge: String = ""
 }

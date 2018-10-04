@@ -276,15 +276,18 @@ public class SecurityHandler {
     
 
  
-    public func login(_ aam: Aam) -> String {
+    public func login(_ aam: Aam) -> Token? {
         let aamClient = AAMClient(aam.aamAddress)
         
         let loginRequest = CryptoHelper.buildHomeTokenAcquisitionRequest(homeCredentials)
         logVerbose("======= login reguest = \(loginRequest)")
-        
         let homeToken = aamClient.getHomeToken(loginRequest)
-        //homeCredentials.homeToken = homeToken.
-        return homeToken
+        homeCredentials.homeToken = Token()
+        homeCredentials.homeToken?.token = homeToken
+        homeCredentials.homeToken?.authenticationChallenge = loginRequest
+        homeCredentials.homeToken?.tokenType = TokenType.HOME
+        
+        return homeCredentials.homeToken
     }
     
 

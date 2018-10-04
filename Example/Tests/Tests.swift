@@ -7,6 +7,8 @@ class Tests: XCTestCase {
     //private var keyStorePassword: String = "KEYSTORE_PASSWORD";
     private var icomUsername: String = "icom";
     private var icomPassword: String = "icom";
+//    private var icomUsername: String = "konrri"; //this user cennot login, so the test will fail
+//    private var icomPassword: String = "konrri";
     private var platformId: String = "SymbIoTe_Core_AAM";
     private var clientId: String = "1ef55ca2-206a-11e8-b467-0ed5f89f718b";
     //private var keyStoreFilename: String = "/keystore.jks";
@@ -23,6 +25,7 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
+    ///many steps of getting access with security home token
     func testGetSecurityRequest() {
         let aams = clientSH.getAvailableAams()
         XCTAssertTrue(aams.count >= 1 , "There are no AAMs just after method")
@@ -43,7 +46,13 @@ class Tests: XCTestCase {
            XCTAssert(certStr.hasPrefix("-----BEGIN CERTIFICATE-----"), "Wrong certificate string ")
             
             let loginToken = clientSH.login(homeAam)
-          logWarn("========login token = \(loginToken)")
+            guard let homeToken = loginToken else {
+                XCTFail("home token == nil")
+                return
+            }
+            logWarn("========login token = \(homeToken.token)")
+            XCTAssert(homeToken.token.count > 10, "HomeToken string should be long")
+            XCTAssert(homeToken.authenticationChallenge.count > 10, "authenticationChallenge string should be long")
         }
     }
     
