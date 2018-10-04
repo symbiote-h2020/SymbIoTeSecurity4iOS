@@ -158,7 +158,8 @@ public class SearchResourcesManager {
             NotificationCenter.default.postNotificationName(SymNotificationName.DeviceListLoaded, object: notiInfoObj)
         }
         else {
-            NotificationCenter.default.postNotificationName(SymNotificationName.DeviceListLoaded)
+            NotificationCenter.default//.post(Notification.Name(SymNotificationName.DeviceListLoaded.rawValue))
+            .postNotificationName(SymNotificationName.DeviceListLoaded)
         }
     }
     

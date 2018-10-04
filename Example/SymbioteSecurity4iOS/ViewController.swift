@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SymbioteIosUtils
 import SymbioteSecurity4iOS
 
 class ViewController: UIViewController {
@@ -16,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var platformNameTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var waitingActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,11 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.getListNotyficationReceived(_:)),
+                                               name: SymNotificationName.DeviceListLoaded,
                                                object: nil)
     }
 
@@ -33,6 +40,19 @@ class ViewController: UIViewController {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    //MARK - data management
+    @objc func getListNotyficationReceived(_ notification: Notification) {
+        let notInfo = NotificationInfo(object: notification.object as AnyObject?)
+        if notInfo.errorType == .noErrorSuccessfulFinish {
+            let vc = DevicesListVC.getViewController()
+            //vc.detailItem = selectedDevice
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else {
+            notInfo.showProblemAlert()
+        }
     }
     
     @objc func keyboardNotification(notification: NSNotification) {
@@ -77,6 +97,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func searchButtonTapped(_ sender: Any) {
+        waitingActivityIndicator.isHidden = false
         let srm = SearchResourcesManager()
         srm.getCoreResourcesList(buildParamsFromTextBoxes())
     }

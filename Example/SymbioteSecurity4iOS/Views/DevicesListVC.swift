@@ -44,14 +44,14 @@ class DevicesListVC: UIViewController {
     
     //MARK - storybord management
     static func getViewController() -> DevicesListVC {
-        let storyboard = UIStoryboard(name: "SearchDevices", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "DevicesListVC")
         return controller as! DevicesListVC
     }
     
     
     static func getNavigationViewController() -> UINavigationController {
-        let storyboard = UIStoryboard(name: "SearchDevices", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "DevicesListNavigationVC")
         return controller as! UINavigationController
     }
