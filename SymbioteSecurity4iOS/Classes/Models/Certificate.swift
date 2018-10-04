@@ -17,4 +17,10 @@ public class Certificate {
     
     //@Id
     public var certificateString: String = "";
+    
+    public init() {}
+    
+    public init(_ str: String) {
+        certificateString = str
+    }
 }

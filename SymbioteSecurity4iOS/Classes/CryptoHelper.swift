@@ -19,7 +19,7 @@ public class CryptoHelper {
         
         
         let expirationTime: TimeInterval = 60000
-        let jwt = JWT(issuer: "testusername", subject: "testclientid", keysManager: manager)
+        let jwt = JWT(issuer: homeCredentials.username, subject: homeCredentials.clientIdentifier, keysManager: manager)
         let token = jwt.createToken(expiresAfter: expirationTime)
         
 //        let pk = try! manager.publicKey()

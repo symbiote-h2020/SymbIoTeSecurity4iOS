@@ -24,6 +24,8 @@ public class SecurityHandler {
     public var coreAAM: Aam?
     public var availableAams = [String:Aam]()
     
+    //both get certificate and login methods must share the same credentials
+    let homeCredentials = HomeCredentials()
     
     struct KeyPair {
         static let manager: EllipticCurveKeyPair.Manager = {
@@ -185,6 +187,12 @@ public class SecurityHandler {
         }
         task.resume()
         semaphore.wait()
+        
+        self.homeCredentials.homeAAM = aam
+        self.homeCredentials.clientIdentifier = clientId
+        self.homeCredentials.username = username
+        self.homeCredentials.certificate = Certificate(certyficateString)
+        
         return certyficateString
     }
     
@@ -270,16 +278,12 @@ public class SecurityHandler {
  
     public func login(_ aam: Aam) -> String {
         let aamClient = AAMClient(aam.aamAddress)
-
-        let homeCredentials = HomeCredentials()
+        
         let loginRequest = CryptoHelper.buildHomeTokenAcquisitionRequest(homeCredentials)
         logVerbose("======= login reguest = \(loginRequest)")
         
         let homeToken = aamClient.getHomeToken(loginRequest)
-        
-        
-        
-        
+        //homeCredentials.homeToken = homeToken.
         return homeToken
     }
     
