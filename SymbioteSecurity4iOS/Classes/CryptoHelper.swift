@@ -18,7 +18,7 @@ public class CryptoHelper {
         //try? manager.deleteKeyPair()
         
         
-        let expirationTime: TimeInterval = 60000
+        let expirationTime: TimeInterval = 864000 //10 days
         let jwt = JWT(issuer: homeCredentials.username, subject: homeCredentials.clientIdentifier, keysManager: manager)
         let token = jwt.createToken(expiresAfter: expirationTime)
         

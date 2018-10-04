@@ -17,6 +17,7 @@
 		769DEBB72165E4380065F2E0 /* DeviceDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBB42165E4380065F2E0 /* DeviceDetailsVC.swift */; };
 		769DEBB82165E4380065F2E0 /* DevicesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBB52165E4380065F2E0 /* DevicesListVC.swift */; };
 		769DEBB92165E4380065F2E0 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBB62165E4380065F2E0 /* DeviceTableViewCell.swift */; };
+		769DEBBE216659630065F2E0 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DEBBD216659630065F2E0 /* LoginVC.swift */; };
 		9DDE46BA84F31162F6274C55 /* Pods_SymbioteSecurity4iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1ED20D7A0F0B5188FEF77C /* Pods_SymbioteSecurity4iOS_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		769DEBB42165E4380065F2E0 /* DeviceDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsVC.swift; sourceTree = "<group>"; };
 		769DEBB52165E4380065F2E0 /* DevicesListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesListVC.swift; sourceTree = "<group>"; };
 		769DEBB62165E4380065F2E0 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
+		769DEBBD216659630065F2E0 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B37E78905E11B32352287EB3 /* Pods_SymbioteSecurity4iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SymbioteSecurity4iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F1D3DE8B54E17F3235AF3F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F75D8CC64C3F0346F6E64826 /* Pods-SymbioteSecurity4iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SymbioteSecurity4iOS_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SymbioteSecurity4iOS_Example/Pods-SymbioteSecurity4iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				769DEBB42165E4380065F2E0 /* DeviceDetailsVC.swift */,
 				769DEBB52165E4380065F2E0 /* DevicesListVC.swift */,
 				769DEBB62165E4380065F2E0 /* DeviceTableViewCell.swift */,
+				769DEBBD216659630065F2E0 /* LoginVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 			files = (
 				769DEBB92165E4380065F2E0 /* DeviceTableViewCell.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				769DEBBE216659630065F2E0 /* LoginVC.swift in Sources */,
 				769DEBB72165E4380065F2E0 /* DeviceDetailsVC.swift in Sources */,
 				769DEBB82165E4380065F2E0 /* DevicesListVC.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

@@ -3,7 +3,7 @@ import SymbioteIosUtils
 import SymbioteSecurity4iOS
 
 class Tests: XCTestCase {
-    private static let AAMServerAddress: String = "https://symbiote-dev.man.poznan.pl/coreInterface"
+    private static let AAMServerAddress: String = "https://symbiote-open.man.poznan.pl/coreInterface"
     //private var keyStorePassword: String = "KEYSTORE_PASSWORD";
     private var icomUsername: String = "icom";
     private var icomPassword: String = "icom";
