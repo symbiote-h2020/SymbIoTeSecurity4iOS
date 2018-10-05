@@ -146,8 +146,10 @@ public class SecurityHandler {
         return aams
     }
     
-    
+    /**
+     The methond sends CSR Certificate signing request
     /// declaration of this function in java is: public Certificate getCertificate(AAM homeAAM, String username, String password, String clientId)
+    */
     public func getCertificate(aam: Aam, username: String, password: String, clientId: String) -> String {
         var certyficateString = ""
         let cn = "\(username)@\(clientId)@\(aam.aamInstanceId)"
@@ -214,19 +216,8 @@ public class SecurityHandler {
         publicKeyBits = try! SecurityHandler.KeyPair.manager.publicKey().data().raw
         
         //Initiale CSR
-        //let csr: CertificateSigningRequest = CertificateSigningRequest(commonName: cn, organizationName: nil, organizationUnitName: nil, countryName: nil, cryptoAlgorithm: CCHmacAlgorithm.sha256)
-
         let csr = CertificateSigningRequest(commonName: cn, organizationName: nil, organizationUnitName: nil, countryName: nil, stateOrProvinceName: nil, localityName: nil, keyAlgorithm: keyAlgorithm)
         
-//        guard let buildData = csr.build(publicKeyBits!, privateKey: privateKey!) else {
-//            return ""
-//        }
-//        let csrString = csrDataToEncodedString(buildData)
-//
-//        logVerbose("CSR string with header and footer")
-//        logVerbose(csrString)
-//
-//        return csrString
         guard let csrBuild2 = csr.buildCSRAndReturnString(publicKeyBits!, privateKey: privateKey!) else {
             return ""
         }
@@ -290,6 +281,15 @@ public class SecurityHandler {
         return homeCredentials.homeToken
     }
     
+    public func isLoggedIn() -> Bool {
+        if self.homeCredentials.certificate.certificateString.isEmpty == false &&
+            self.homeCredentials.homeToken?.token.isEmpty == false {
+            return true
+        }
+        else {
+            return false
+        }
+    }
 
  
 }

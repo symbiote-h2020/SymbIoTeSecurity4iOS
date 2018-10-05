@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var waitingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loginStatusLabel: UILabel!
     
     let srm = SearchResourcesManager()
     
@@ -42,6 +43,19 @@ class ViewController: UIViewController {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if clientSH.isLoggedIn() {
+            loginStatusLabel.text = "You are logged in"
+            loginStatusLabel.textColor = UIColor.green
+        }
+        else {
+            loginStatusLabel.text = "You are not logged in - you can access only public resources"
+            loginStatusLabel.textColor = UIColor.red
+        }
     }
     
     //MARK - data management

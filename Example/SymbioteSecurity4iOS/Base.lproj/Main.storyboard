@@ -68,12 +68,20 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FZM-V3-mHi">
                                 <rect key="frame" x="226" y="618" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="login status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drd-C3-8AE">
+                                <rect key="frame" x="16" y="403" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0Uy-L9-R4Z" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="1yl-nm-I40"/>
                             <constraint firstItem="0AM-an-hgd" firstAttribute="top" secondItem="dGA-Po-q2m" secondAttribute="bottom" constant="24" id="2bA-nd-Kye"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="drd-C3-8AE" secondAttribute="trailing" id="3nW-Cy-BOF"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pMx-0D-NYf" secondAttribute="bottom" constant="24" id="5VO-9D-DeG"/>
+                            <constraint firstItem="drd-C3-8AE" firstAttribute="top" secondItem="Hkz-Fm-DIN" secondAttribute="bottom" constant="106" id="96d-G7-J8c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0Uy-L9-R4Z" secondAttribute="trailing" id="ATf-G2-PAT"/>
                             <constraint firstItem="Hkz-Fm-DIN" firstAttribute="top" secondItem="0AM-an-hgd" secondAttribute="bottom" constant="8" id="G2I-xF-wh4"/>
                             <constraint firstItem="FZM-V3-mHi" firstAttribute="centerY" secondItem="pMx-0D-NYf" secondAttribute="centerY" id="Il0-sp-Cnm"/>
@@ -82,6 +90,7 @@
                             <constraint firstItem="Hkz-Fm-DIN" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="QOT-Nw-E4w"/>
                             <constraint firstItem="dGA-Po-q2m" firstAttribute="top" secondItem="LTq-iK-vnJ" secondAttribute="bottom" constant="8" id="QPX-wT-hwS"/>
                             <constraint firstItem="LTq-iK-vnJ" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="QdX-qD-t9h"/>
+                            <constraint firstItem="drd-C3-8AE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="ULk-ZV-U0r"/>
                             <constraint firstItem="LTq-iK-vnJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Zbs-90-Xti"/>
                             <constraint firstItem="0AM-an-hgd" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="Ztt-5z-RsM"/>
                             <constraint firstItem="dGA-Po-q2m" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="elX-oi-mOl"/>
@@ -107,6 +116,7 @@
                     <connections>
                         <outlet property="keyboardHeightLayoutConstraint" destination="5VO-9D-DeG" id="2rH-AV-27w"/>
                         <outlet property="locationNameTextField" destination="Hkz-Fm-DIN" id="fal-Bp-sCi"/>
+                        <outlet property="loginStatusLabel" destination="drd-C3-8AE" id="Bbh-mW-Hre"/>
                         <outlet property="nameTextField" destination="0Uy-L9-R4Z" id="sWf-z4-ZcX"/>
                         <outlet property="platformNameTextField" destination="dGA-Po-q2m" id="3SR-wF-xZD"/>
                         <outlet property="searchButton" destination="pMx-0D-NYf" id="gCv-Yj-lYN"/>
@@ -159,39 +169,72 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://symbiote-open.man.poznan.pl" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pc7-b8-ec2">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://symbiote-open.man.poznan.pl/coreInterface" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pc7-b8-ec2">
                                 <rect key="frame" x="16" y="291" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGZ-fy-D1c">
+                                <rect key="frame" x="165" y="399" width="45" height="30"/>
+                                <state key="normal" title="LOGIN"/>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="82z-YR-gDw" eventType="touchUpInside" id="DA5-kl-aSz"/>
+                                    <action selector="searchButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2vd-Wq-iM5"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y2u-OP-awq">
+                                <rect key="frame" x="225" y="404" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="HomeToken = " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="h3K-mC-brC">
+                                <rect key="frame" x="16" y="437" width="343" height="222"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="h3K-mC-brC" firstAttribute="leading" secondItem="wXq-Ld-9rh" secondAttribute="leadingMargin" id="0Ki-Ss-mqL"/>
                             <constraint firstItem="6io-Po-lHy" firstAttribute="top" secondItem="VOb-tS-0C8" secondAttribute="bottom" constant="32" id="2a7-JY-umo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bc6-4K-YQT" secondAttribute="trailing" id="3v3-O5-8xR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6io-Po-lHy" secondAttribute="trailing" id="4Lm-jl-6CZ"/>
+                            <constraint firstItem="gGZ-fy-D1c" firstAttribute="top" secondItem="pc7-b8-ec2" secondAttribute="bottom" constant="78" id="4Ni-zs-A0H"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pc7-b8-ec2" secondAttribute="trailing" id="5jo-Cs-uZf"/>
                             <constraint firstItem="2b0-kR-3uv" firstAttribute="leading" secondItem="wXq-Ld-9rh" secondAttribute="leadingMargin" id="6gW-Pl-1rY"/>
                             <constraint firstItem="pc7-b8-ec2" firstAttribute="top" secondItem="6io-Po-lHy" secondAttribute="bottom" constant="8" id="8BF-0m-n1Z"/>
+                            <constraint firstItem="gGZ-fy-D1c" firstAttribute="centerX" secondItem="wXq-Ld-9rh" secondAttribute="centerX" id="HjX-HC-Snq"/>
                             <constraint firstItem="2b0-kR-3uv" firstAttribute="top" secondItem="sxJ-5T-OgC" secondAttribute="bottom" constant="24" id="Kd4-pS-12I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VOb-tS-0C8" secondAttribute="trailing" id="LmD-Mc-GZK"/>
                             <constraint firstItem="bc6-4K-YQT" firstAttribute="leading" secondItem="wXq-Ld-9rh" secondAttribute="leadingMargin" id="Sni-BA-L0X"/>
+                            <constraint firstItem="h3K-mC-brC" firstAttribute="top" secondItem="gGZ-fy-D1c" secondAttribute="bottom" constant="8" id="TDk-Bz-fdq"/>
+                            <constraint firstItem="y2u-OP-awq" firstAttribute="centerY" secondItem="gGZ-fy-D1c" secondAttribute="centerY" id="a4Q-Qf-hJI"/>
                             <constraint firstItem="6io-Po-lHy" firstAttribute="leading" secondItem="wXq-Ld-9rh" secondAttribute="leadingMargin" id="cIC-XN-oy6"/>
                             <constraint firstItem="VOb-tS-0C8" firstAttribute="top" secondItem="bc6-4K-YQT" secondAttribute="bottom" constant="8" id="eE5-rL-eiu"/>
                             <constraint firstItem="bc6-4K-YQT" firstAttribute="top" secondItem="zGB-hF-riC" secondAttribute="bottom" constant="24" id="kST-9J-hFV"/>
                             <constraint firstItem="zGB-hF-riC" firstAttribute="top" secondItem="2b0-kR-3uv" secondAttribute="bottom" constant="8" id="kW7-jl-8eq"/>
+                            <constraint firstItem="h3K-mC-brC" firstAttribute="trailing" secondItem="wXq-Ld-9rh" secondAttribute="trailingMargin" id="mKX-e6-Tjh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zGB-hF-riC" secondAttribute="trailing" id="o8e-vO-PlP"/>
                             <constraint firstItem="pc7-b8-ec2" firstAttribute="leading" secondItem="wXq-Ld-9rh" secondAttribute="leadingMargin" id="oDL-e5-LgN"/>
                             <constraint firstItem="VOb-tS-0C8" firstAttribute="leading" secondItem="wXq-Ld-9rh" secondAttribute="leadingMargin" id="qPh-P6-4lT"/>
                             <constraint firstItem="zGB-hF-riC" firstAttribute="leading" secondItem="wXq-Ld-9rh" secondAttribute="leadingMargin" id="qQj-4p-OBk"/>
+                            <constraint firstItem="y2u-OP-awq" firstAttribute="leading" secondItem="gGZ-fy-D1c" secondAttribute="trailing" constant="15" id="uM5-OP-wFw"/>
+                            <constraint firstItem="MKk-pf-JNA" firstAttribute="top" secondItem="h3K-mC-brC" secondAttribute="bottom" constant="8" id="uNQ-Ec-YcX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2b0-kR-3uv" secondAttribute="trailing" id="ymV-cZ-Qew"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="y2u-OP-awq" id="eXm-DY-RMC"/>
+                        <outlet property="homeAamTextField" destination="pc7-b8-ec2" id="QFl-iK-1X9"/>
+                        <outlet property="infoTextView" destination="h3K-mC-brC" id="aKf-hw-ntB"/>
+                        <outlet property="loginButton" destination="gGZ-fy-D1c" id="zM7-P2-x2R"/>
+                        <outlet property="passwordTextField" destination="VOb-tS-0C8" id="uzf-HD-0VP"/>
+                        <outlet property="usrnameTextField" destination="zGB-hF-riC" id="QVG-4B-Ixt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8J-M8-q2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2446" y="-797"/>
+            <point key="canvasLocation" x="2445.5999999999999" y="-797.45127436281871"/>
         </scene>
         <!--Devices ListVC-->
         <scene sceneID="fYu-nn-B1E">
