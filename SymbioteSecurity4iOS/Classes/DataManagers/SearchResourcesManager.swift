@@ -28,7 +28,7 @@ public class QueryParameters {
 }
 
 ///global instance of SecurityHandler client
-public var clientSH: SecurityHandler = SecurityHandler(homeAAMAddress: Constants.defaultCoreInterfaceApiUrl)
+public var clientSH: SecurityHandler = SecurityHandler(homeAAMAddress: "https://symbiote-dev.man.poznan.pl/coreInterface")
 
 public class SearchResourcesManager {
     
@@ -37,14 +37,15 @@ public class SearchResourcesManager {
     public var aamClient: AAMClient
     
     
-    public init(coreUrl: String = "https://symbiote-open.man.poznan.pl/coreInterface") {
+    public init(coreUrl: String = "https://symbiote-dev.man.poznan.pl/coreInterface") {
         self.coreInterfaceUrl = coreUrl
         aamClient = AAMClient(coreUrl)
+        clientSH = SecurityHandler(homeAAMAddress: coreUrl)
     }
     
 
     public func buildQueryUrl(_ params: [String:String]) -> URL? {
-        var urlComp = URLComponents(string: "https://symbiote-open.man.poznan.pl/coreInterface/query")!
+        var urlComp = URLComponents(string: "\(coreInterfaceUrl)/query")!
         urlComp.queryItems = [URLQueryItem]()
         for p in params.keys {
             let qItem = URLQueryItem(name: p, value: params[p])

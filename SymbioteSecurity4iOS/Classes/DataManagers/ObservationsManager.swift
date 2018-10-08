@@ -37,6 +37,54 @@ public class ObservationsManager {
         }
     }
     
+    
+    public func getResourceId() { //TODO parameters
+        let url = URL(string: "https://symbiote-dev.man.poznan.pl/coreInterface/resourceUrls?id=5a9d2e024a234e4b02e97c41")
+        
+        let request = NSMutableURLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
+        request.setValue("1", forHTTPHeaderField: "x-auth-size")
+        if clientSH.isLoggedIn() {
+            request.setValue(clientSH.buildXauth1HeaderWithHomeToken(), forHTTPHeaderField: "x-auth-1")
+        }
+        else {
+            request.setValue(aamClient.buildXauth1HeaderWithGuestToken(), forHTTPHeaderField: "x-auth-1")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data,response,error in
+            if let err = error {
+                logError(error.debugDescription)
+                
+                let notiInfoObj  = NotificationInfo(type: ErrorType.connection, info: err.localizedDescription)
+                NotificationCenter.default.postNotificationName(SymNotificationName.DeviceListLoaded, object: notiInfoObj)
+                
+               
+            }
+            else {
+                let status = (response as! HTTPURLResponse).statusCode
+                if (status >= 400) {
+                    logError("response status: \(status)  \(response.debugDescription)")
+                    let notiInfoObj  = NotificationInfo(type: ErrorType.connection, info: "response status: \(status)")
+                    NotificationCenter.default.postNotificationName(SymNotificationName.DeviceListLoaded, object: notiInfoObj)
+                }
+                
+                if let jsonData = data {
+                    do {
+                        let json = try JSON(data: jsonData)
+                        log(json.debugDescription)
+                        
+                    } catch {
+                        logError("getResourceList json")
+                    }
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
     ///use only inside SSP to combine L1 and L3/L4 devices on one list
     func makeRequestForSSPObservations(_ forDeviceId: String!) -> NSMutableURLRequest? {
         if let devId = forDeviceId {

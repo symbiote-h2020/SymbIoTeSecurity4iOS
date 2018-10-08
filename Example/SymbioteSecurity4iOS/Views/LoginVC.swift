@@ -23,8 +23,8 @@ public class LoginVC: UIViewController {
     @IBOutlet weak var infoTextView: UITextView!
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        if let coreUrl = homeAamTextField.text, let username = usrnameTextField.text, let pass = passwordTextField.text {
-            clientSH = SecurityHandler(homeAAMAddress: coreUrl)
+        if  let username = usrnameTextField.text, let pass = passwordTextField.text {  //let coreUrl = homeAamTextField.text,
+            //clientSH = SecurityHandler(homeAAMAddress: coreUrl)
             let coreAam = clientSH.getCoreAAMInstance()
             if let homeAam = coreAam {
                 let certStr = clientSH.getCertificate(aam: homeAam, username: username, password: pass, clientId: "zupa_konrri_zupa")
@@ -33,5 +33,11 @@ public class LoginVC: UIViewController {
                 infoTextView.text = "Certyficate = \n\(certStr) \n\nToken=\n\(loginToken?.token ?? "error")"
             }
         }
+    }
+    
+    
+    @IBAction func testButtonTapped(_ sender: Any) {
+        let obsMan = ObservationsManager()
+        obsMan.getResourceId()
     }
 }

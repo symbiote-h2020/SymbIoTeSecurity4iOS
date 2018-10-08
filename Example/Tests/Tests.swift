@@ -84,4 +84,12 @@ class Tests: XCTestCase {
         return result == .completed
     }
     
+    func testJwtDecode() {
+        let token = "eyJhbGciOiJFUzI1NiJ9.eyJ0dHlwIjoiSE9NRSIsInN1YiI6Imljb21AenVwYV9rb25ycmlfenVwYSIsImlwayI6Ik1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRVBXRGQzNnllcXVFWm8zUzh3SXZNL1ZmK1F3SE9pK01FMVN2RmIvcG5hVjdQRFJKOEU2ZnVpeXg1ZTlrZVhra0diRFVVTDlJcU54QnJJQ3dvQkJUU0NnPT0iLCJpc3MiOiJTeW1iSW9UZV9Db3JlX0FBTSIsImV4cCI6MTUzOTAwMjU1NSwiaWF0IjoxNTM5MDAyNDk1LCJqdGkiOiIyMDI2NTI0MTY4Iiwic3BrIjoiTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFdTdYck9QR3AwVDFaSlhoVnlOcXJNZ2RhRmJXSi8zVHZXTGdJZEp4OXRGNk1MaWEvL2YydVJNL05SaTF2TFloUUdoeU1SV1pScGFZOWcxUzFlRjhHWnc9PSJ9.KY1qmH54nhmErWSJ6nY7yoeVlFOWGXu_PI3zpRaqI7u6s9Wk-rQVbWajCGndlMXMBcqTzPb3g_6N-kgZjl2nQA"
+        
+        let result = JWT.decode(token: token)
+        
+        log("")
+    }
+    
 }
