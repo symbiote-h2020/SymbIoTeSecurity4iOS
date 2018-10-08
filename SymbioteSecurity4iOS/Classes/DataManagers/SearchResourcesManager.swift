@@ -27,6 +27,9 @@ public class QueryParameters {
     public var should_rank:           Bool?
 }
 
+///global instance of SecurityHandler client
+public var clientSH: SecurityHandler = SecurityHandler(homeAAMAddress: Constants.defaultCoreInterfaceApiUrl)
+
 public class SearchResourcesManager {
     
     public var devicesList: [SmartDevice] = []
@@ -63,7 +66,12 @@ public class SearchResourcesManager {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
         request.setValue("1", forHTTPHeaderField: "x-auth-size")
-        request.setValue(aamClient.buildXauth1HeaderWithGuestToken(), forHTTPHeaderField: "x-auth-1")
+        if clientSH.isLoggedIn() {
+            request.setValue(clientSH.buildXauth1HeaderWithHomeToken(), forHTTPHeaderField: "x-auth-1")
+        }
+        else {
+            request.setValue(aamClient.buildXauth1HeaderWithGuestToken(), forHTTPHeaderField: "x-auth-1")
+        }
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data,response,error in
             if let err = error {

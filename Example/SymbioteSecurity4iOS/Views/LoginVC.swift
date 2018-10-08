@@ -11,7 +11,7 @@ import UIKit
 import SymbioteIosUtils
 import SymbioteSecurity4iOS
 
-public var clientSH: SecurityHandler = SecurityHandler(homeAAMAddress: Constants.defaultCoreInterfaceApiUrl)
+
 
 public class LoginVC: UIViewController {
     
@@ -27,7 +27,7 @@ public class LoginVC: UIViewController {
             clientSH = SecurityHandler(homeAAMAddress: coreUrl)
             let coreAam = clientSH.getCoreAAMInstance()
             if let homeAam = coreAam {
-                let certStr = clientSH.getCertificate(aam: homeAam, username: username, password: pass, clientId: "clientId")
+                let certStr = clientSH.getCertificate(aam: homeAam, username: username, password: pass, clientId: "zupa_konrri_zupa")
                 let loginToken = clientSH.login(homeAam)
                 
                 infoTextView.text = "Certyficate = \n\(certStr) \n\nToken=\n\(loginToken?.token ?? "error")"

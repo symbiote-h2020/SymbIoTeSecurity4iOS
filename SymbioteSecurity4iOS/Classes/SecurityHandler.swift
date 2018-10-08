@@ -9,8 +9,9 @@
 import Foundation
 import SwiftyJSON
 import SymbioteIosUtils
-//import CertificateSigningRequestSwift
+// CertificateSigningRequestSwift
 import iOSCSRSwift
+
 
 /**
   SecurityHandler class is designe to work exactly as its counterpart on android /java code
@@ -24,7 +25,7 @@ public class SecurityHandler {
     public var coreAAM: Aam?
     public var availableAams = [String:Aam]()
     
-    //both get certificate and login methods must share the same credentials
+    //both getCertificate and login methods must share the same credentials
     let homeCredentials = HomeCredentials()
     
     struct KeyPair {
@@ -292,4 +293,17 @@ public class SecurityHandler {
     }
 
  
+    public func buildXauth1HeaderWithHomeToken() -> String {
+        let json = JSON(
+            ["token":homeCredentials.homeToken?.token,
+             "authenticationChallenge":homeCredentials.homeToken?.authenticationChallenge,
+             "clientCertificate":"",
+             "clientCertificateSigningAAMCertificate":"",
+             "foreignTokenIssuingAAMCertificate":""
+            ]
+        )
+        
+        log(json.rawString(options: []))
+        return json.rawString(options: []) ?? "couldn't build request json"
+    }
 }
