@@ -27,8 +27,11 @@ public class QueryParameters {
     public var should_rank:           Bool?
 }
 
+
+let coreUrl = "https://symbiote-dev.man.poznan.pl/coreInterface"
+
 ///global instance of SecurityHandler client
-public var clientSH: SecurityHandler = SecurityHandler(homeAAMAddress: "https://symbiote-dev.man.poznan.pl/coreInterface")
+public var clientSH: SecurityHandler = SecurityHandler(homeAAMAddress: coreUrl)
 
 public class SearchResourcesManager {
     
@@ -37,10 +40,9 @@ public class SearchResourcesManager {
     public var aamClient: AAMClient
     
     
-    public init(coreUrl: String = "https://symbiote-dev.man.poznan.pl/coreInterface") {
+    public init() {
         self.coreInterfaceUrl = coreUrl
         aamClient = AAMClient(coreUrl)
-        clientSH = SecurityHandler(homeAAMAddress: coreUrl)
     }
     
 
@@ -145,6 +147,7 @@ public class SearchResourcesManager {
     }
     
     private func parseDevicesFromCoreJson(_ dataJson: JSON) {
+        devicesList = [SmartDevice]()
         if dataJson["body"].exists() == false {
             logWarn("+++++++ wrong json +++++  SearchDevicesManager dataJson = \(dataJson)")
             

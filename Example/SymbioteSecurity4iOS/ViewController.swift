@@ -102,12 +102,12 @@ class ViewController: UIViewController {
         
         let locationName = locationNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if locationName?.isEmpty == false {
-            dict["locationName"] = locationName
+            dict["location_name"] = locationName
         }
         
         let platformName = platformNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if platformName?.isEmpty == false {
-            dict["platformName"] = platformName
+            dict["platform_name"] = platformName
         }
         return dict
     }

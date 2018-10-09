@@ -39,7 +39,8 @@ public class ObservationsManager {
     
     
     public func getResourceId() { //TODO parameters
-        let url = URL(string: "https://symbiote-dev.man.poznan.pl/coreInterface/resourceUrls?id=5a9d2e024a234e4b02e97c41")
+        //resource of user icom id    String    "5b67ea6c8199a065667cc409"
+        let url = URL(string: "https://symbiote-dev.man.poznan.pl/coreInterface/resourceUrls?id=5b67ea6c8199a065667cc409")  //id=5a9d2e024a234e4b02e97c41")
         
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "GET"
