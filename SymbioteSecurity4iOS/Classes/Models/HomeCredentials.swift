@@ -40,6 +40,7 @@ public class HomeCredentials {
      */
     public var homeToken: Token?
     
+    
     init(homeAam: Aam, username: String, clientIdentifier: String, cert: Certificate) {
         self.homeAAM = homeAam
         self.username = username

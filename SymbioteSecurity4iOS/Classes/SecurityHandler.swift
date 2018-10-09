@@ -274,10 +274,7 @@ public class SecurityHandler {
         let loginRequest = CryptoHelper.buildHomeTokenAcquisitionRequest(homeCredentials)
         logVerbose("======= login reguest = \(loginRequest)")
         let homeToken = aamClient.getHomeToken(loginRequest)
-        homeCredentials.homeToken = Token()
-        homeCredentials.homeToken?.token = homeToken
-        homeCredentials.homeToken?.authenticationChallenge = loginRequest
-        homeCredentials.homeToken?.tokenType = TokenType.HOME
+        homeCredentials.homeToken = Token(homeToken)
         
         return homeCredentials.homeToken
     }
@@ -303,6 +300,7 @@ public class SecurityHandler {
             ]
         )
         
+        log("\n        ========   buildXauth1HeaderWithHomeToken")
         log(json.rawString(options: []))
         return json.rawString(options: []) ?? "couldn't build request json"
     }

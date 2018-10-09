@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftyJSON
-//import SymbioteIosUtils
+import SymbioteIosUtils
 //import EllipticCurveKeyPair
 
 public enum JWTAlgorithm: String {
@@ -43,6 +43,7 @@ public class JWT {
     let subject: String
     let keysManager: EllipticCurveKeyPair.Manager
     
+    
     public init(algorithm: JWTAlgorithm = .ES256, issuer: String, subject: String, keysManager: EllipticCurveKeyPair.Manager) {
         self.algorithm = algorithm
         self.issuer = issuer
@@ -59,6 +60,15 @@ public class JWT {
         return signatureInput + "." + signature
     }
     
+    public func createAuthenticationChallenge(_ ac: AuthenticationChallenge)  -> String {
+        let header = createHeader()
+        let payload = ac.createPayload()
+        let signatureInput = self.base64encode(header) + "." + self.base64encode(payload)
+        let signature = createSignature(signatureInput)  //TODO this or some private key
+        
+        return signatureInput + "." + signature
+    }
+    
     public static func decode(token: String) -> JSON? {
         let chunks = token.components(separatedBy: ".")
         guard chunks.count == 3 else {
@@ -67,7 +77,7 @@ public class JWT {
         guard let decodedString = base64decode(chunks[1]) else {
             return nil
         }
-        
+        logVerbose("=======  token = decodedString = \(decodedString)")
         return JSON(parseJSON: decodedString)
     }
 }
@@ -84,6 +94,7 @@ extension JWT {
         return "{\"iss\":\"\(self.issuer)\",\"sub\":\"\(self.subject)\",\"iat\":\(iat),\"exp\":\(exp)}"
     }
     
+    
     fileprivate func base64encode(_ input: String) -> String {
         guard let data = input.data(using: .utf8) else {
             fatalError("Cannot create data")
@@ -93,11 +104,12 @@ extension JWT {
     }
     
     fileprivate static func base64decode(_ input: String) -> String? {
-        guard let data = Data(base64Encoded: unfilterBase64(input), options: .ignoreUnknownCharacters) else {
+        guard let data = Data(base64Encoded: unfilterBase64With(input), options: .ignoreUnknownCharacters) else {  //unfilterBase64(input) or  not unfilter
             fatalError("Cannot create data")
         }
         return String(data: data, encoding: .utf8)
     }
+
     
     fileprivate func createSignature(_ input: String) -> String {
         guard
@@ -138,4 +150,26 @@ extension JWT {
             .replacingOccurrences(of: "-", with: "+")
             .replacingOccurrences(of: "_", with: "/")
     }
+    
+    private static func orMaybeFilterBase64(_ input: String) -> String {
+        return input
+            .replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "=", with: "")
+    }
+    
+    //https://stackoverflow.com/questions/36364324/swift-base64-decoding-returns-nil
+    private static func unfilterBase64With(_ input: String) -> String {
+        var encoded64 = input
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+        let remainder = encoded64.count % 4
+        if remainder > 0 {
+            encoded64 = encoded64.padding(toLength: encoded64.count + 4 - remainder,
+                                          withPad: "=",
+                                          startingAt: 0)
+        }
+        return encoded64
+    }
+    
 }
