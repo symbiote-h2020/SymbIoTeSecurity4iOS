@@ -14,7 +14,7 @@ public class ObservationsManager {
     public var aamClient: AAMClient
     public var coreInterfaceUrl = ""
     
-    public init(coreUrl: String = "https://symbiote-open.man.poznan.pl/coreInterface") {
+    public init(coreUrl: String = homeAamConstant) {
         self.coreInterfaceUrl = coreUrl
         aamClient = AAMClient(coreUrl)
     }
@@ -38,9 +38,9 @@ public class ObservationsManager {
     }
     
     
-    public func getResourceId() { //TODO parameters
+    public func getResourcesUrl(_ resId: String) { //TODO parameters
         //resource of user icom id    String    "5b67ea6c8199a065667cc409"
-        let url = URL(string: "https://symbiote-dev.man.poznan.pl/coreInterface/resourceUrls?id=5b67ea6c8199a065667cc409")  //id=5a9d2e024a234e4b02e97c41")
+        let url = URL(string: "\(self.coreInterfaceUrl)/resourceUrls?id=\(resId),")  //id=5a9d2e024a234e4b02e97c41")
         
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "GET"

@@ -38,6 +38,8 @@ public class LoginVC: UIViewController {
     
     @IBAction func testButtonTapped(_ sender: Any) {
         let obsMan = ObservationsManager()
-        obsMan.getResourceId()
+        obsMan.getResourcesUrl("5b67ea6c8199a065667cc409")
+        ////resource of user icom id    String    "5b67ea6c8199a065667cc409"
+        //let url = URL(string: "https://symbiote-dev.man.poznan.pl/coreInterface/resourceUrls?id=")  //id=5a9d2e024a234e4b02e97c41")
     }
 }

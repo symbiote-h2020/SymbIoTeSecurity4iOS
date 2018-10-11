@@ -28,10 +28,10 @@ public class QueryParameters {
 }
 
 
-let coreUrl = "https://symbiote-dev.man.poznan.pl/coreInterface"
+
 
 ///global instance of SecurityHandler client
-public var clientSH: SecurityHandler = SecurityHandler(homeAAMAddress: coreUrl)
+public var clientSH: SecurityHandler = SecurityHandler(homeAAMAddress: homeAamConstant)
 
 public class SearchResourcesManager {
     
@@ -40,7 +40,7 @@ public class SearchResourcesManager {
     public var aamClient: AAMClient
     
     
-    public init() {
+    public init(_ coreUrl: String = homeAamConstant) {
         self.coreInterfaceUrl = coreUrl
         aamClient = AAMClient(coreUrl)
     }

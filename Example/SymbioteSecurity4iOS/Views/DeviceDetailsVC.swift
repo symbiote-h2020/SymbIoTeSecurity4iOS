@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SymbioteSecurity4iOS
 import SymbioteIosUtils
 
 class DeviceDetailsVC: UIViewController {
@@ -21,6 +22,7 @@ class DeviceDetailsVC: UIViewController {
     @IBOutlet weak var chartButton: UIButton!
     @IBOutlet weak var observationButton: UIButton!
     
+    var obseravtionsManager: ObservationsManager = ObservationsManager()
     
     var detailItem: SmartDevice? {
         didSet {
@@ -68,6 +70,10 @@ class DeviceDetailsVC: UIViewController {
 //                NotificationCenter.default.addObserver(self, selector: #selector(tokenFromCoreNotificationReceived(_:)), name: SymNotificationName.SecurityTokenCore, object: nil)
 //                GuestTokensManager.shared.getCoreGuestToken()
 //            }
+            
+            obseravtionsManager.getResourcesUrl(d.id)
+                
+            
 
         }
     }

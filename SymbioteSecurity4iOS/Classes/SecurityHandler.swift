@@ -13,6 +13,8 @@ import SymbioteIosUtils
 import iOSCSRSwift
 
 
+public let homeAamConstant = "https://symbiote-open.man.poznan.pl/coreInterface" //dev tests "https://symbiote-dev.man.poznan.pl/coreInterface"
+
 /**
   SecurityHandler class is designe to work exactly as its counterpart on android /java code
  see https://github.com/symbiote-h2020/SymbIoTeSecurity/blob/master-android/src/main/java/eu/h2020/symbiote/security/handler/SecurityHandler.java
@@ -164,7 +166,6 @@ public class SecurityHandler {
         
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
-        //url eg. URL(string: "https://symbiote-dev.man.poznan.pl/coreInterface/sign_certificate_request")
         let url = URL(string: aam.aamAddress + SecurityConstants.AAM_SIGN_CERTIFICATE_REQUEST)
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "POST"

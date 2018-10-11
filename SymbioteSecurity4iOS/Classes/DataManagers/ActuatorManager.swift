@@ -14,7 +14,7 @@ public class ActuatorManager {
     public var aamClient: AAMClient
     public var coreInterfaceUrl = ""
     
-    public init(coreUrl: String = "https://symbiote-open.man.poznan.pl/coreInterface") {
+    public init(coreUrl: String = homeAamConstant) {
         self.coreInterfaceUrl = coreUrl
         aamClient = AAMClient(coreUrl)
     }
