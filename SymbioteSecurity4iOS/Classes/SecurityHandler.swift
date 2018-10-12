@@ -301,8 +301,8 @@ public class SecurityHandler {
             ]
         )
         
-        log("\n        ========   buildXauth1HeaderWithHomeToken")
-        log(json.rawString(options: []))
+        logVerbose("\n        ========   buildXauth1HeaderWithHomeToken")
+        logVerbose(json.rawString(options: []))
         return json.rawString(options: []) ?? "couldn't build request json"
     }
     

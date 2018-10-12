@@ -76,8 +76,8 @@ public class Token {
         let strToHash = self.token + ac.iat + "000"
         ac.hash = sha256(strToHash) ?? ""
         
-        log("           ======================   sting to hash = ")
-        log(strToHash)
+        logVerbose("           ======================   sting to hash = ")
+        logVerbose(strToHash)
         
         return ac
     }

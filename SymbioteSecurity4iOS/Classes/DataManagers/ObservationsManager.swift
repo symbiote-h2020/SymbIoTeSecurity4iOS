@@ -52,11 +52,11 @@ public class ObservationsManager {
             request.setValue(xAuthJson, forHTTPHeaderField: "x-auth-1")
             
             
-            log("\n\n========\n\n")
+            logVerbose("\n\n========\n\n")
             let debugHeader = "\(request.allHTTPHeaderFields as AnyObject)"
             let debugHeader2 = debugHeader.replacingOccurrences(of: "\\\"", with: "\"")
-            log(debugHeader2)
-            log("\n\n========\n\n")
+            logVerbose(debugHeader2)
+            logVerbose("\n\n========\n\n")
         }
         else {
             request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")

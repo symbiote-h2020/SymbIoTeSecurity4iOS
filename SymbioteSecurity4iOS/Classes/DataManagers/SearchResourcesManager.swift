@@ -67,12 +67,13 @@ public class SearchResourcesManager {
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
         request.setValue("1", forHTTPHeaderField: "x-auth-size")
         if clientSH.isLoggedIn() {
+            request.setValue("\(clientSH.getAuthenticationChallangeCreationTime())", forHTTPHeaderField: "x-auth-timestamp")
             request.setValue(clientSH.buildXauth1HeaderWithHomeToken(), forHTTPHeaderField: "x-auth-1")
         }
         else {
+            request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
             request.setValue(aamClient.buildXauth1HeaderWithGuestToken(), forHTTPHeaderField: "x-auth-1")
         }
         
