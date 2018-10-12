@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import SymbioteIosUtils
 import iOSCSRSwift
 
 public enum TokenType {
@@ -27,6 +28,8 @@ public class Token {
     public var sub: String = ""
     public var iat: String = ""
     
+    public var rawAuthenticationChalange: AuthenticationChallenge?
+    
     public init(_ homeToken: String) {
         tokenType = TokenType.HOME
         
@@ -40,6 +43,7 @@ public class Token {
         }
         
         let ac = buildAuthenticationChallenge()
+        rawAuthenticationChalange = ac
         self.authenticationChallenge = CryptoHelper.jwt?.createAuthenticationChallenge(ac) ?? "error AuthenticationChallenge "
         
     }
@@ -68,8 +72,12 @@ public class Token {
         ac.iss = self.sub
         ac.ipk = self.spk
         //hash =  SHA256(token+timestamp)
-        let strToHash = self.token + iat + "000"
+        //let strToHash = self.token + iat + "000"
+        let strToHash = self.token + ac.iat + "000"
         ac.hash = sha256(strToHash) ?? ""
+        
+        log("           ======================   sting to hash = ")
+        log(strToHash)
         
         return ac
     }

@@ -40,19 +40,30 @@ public class ObservationsManager {
     
     public func getResourcesUrl(_ resId: String) { //TODO parameters
         //resource of user icom id    String    "5b67ea6c8199a065667cc409"
-        let url = URL(string: "\(self.coreInterfaceUrl)/resourceUrls?id=\(resId),")  //id=5a9d2e024a234e4b02e97c41")
+        let url = URL(string: "\(self.coreInterfaceUrl)/resourceUrls?id=\(resId)")  //id=5a9d2e024a234e4b02e97c41")
         
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
         request.setValue("1", forHTTPHeaderField: "x-auth-size")
         if clientSH.isLoggedIn() {
-            request.setValue(clientSH.buildXauth1HeaderWithHomeToken(), forHTTPHeaderField: "x-auth-1")
+            request.setValue("\(clientSH.getAuthenticationChallangeCreationTime())", forHTTPHeaderField: "x-auth-timestamp")
+            let xAuthJson =  clientSH.buildXauth1HeaderWithHomeToken()
+            request.setValue(xAuthJson, forHTTPHeaderField: "x-auth-1")
+            
+            
+            log("\n\n========\n\n")
+            let debugHeader = "\(request.allHTTPHeaderFields as AnyObject)"
+            let debugHeader2 = debugHeader.replacingOccurrences(of: "\\\"", with: "\"")
+            log(debugHeader2)
+            log("\n\n========\n\n")
         }
         else {
+            request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")
             request.setValue(aamClient.buildXauth1HeaderWithGuestToken(), forHTTPHeaderField: "x-auth-1")
         }
+        
+        //print("request headers as JSON\n\(request.allHTTPHeaderFields as AnyObject)")
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data,response,error in
             if let err = error {

@@ -13,7 +13,7 @@ import SymbioteIosUtils
 import iOSCSRSwift
 
 
-public let homeAamConstant = "https://symbiote-open.man.poznan.pl/coreInterface" //dev tests "https://symbiote-dev.man.poznan.pl/coreInterface"
+public let homeAamConstant = "https://symbiote-dev.man.poznan.pl/coreInterface" //dev tests "https://symbiote-dev.man.poznan.pl/coreInterface"
 
 /**
   SecurityHandler class is designe to work exactly as its counterpart on android /java code
@@ -305,4 +305,9 @@ public class SecurityHandler {
         log(json.rawString(options: []))
         return json.rawString(options: []) ?? "couldn't build request json"
     }
+    
+    public func getAuthenticationChallangeCreationTime() -> String {
+        return (homeCredentials.homeToken?.rawAuthenticationChalange?.iat ?? "error time") + "000" 
+    }
+    
 }
