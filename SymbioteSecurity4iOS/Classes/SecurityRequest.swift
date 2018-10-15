@@ -38,6 +38,7 @@ public class SecurityRequest {
         return request
     }
     
+    /*  moved to security handler
     public static func makeXAuth1RequestHeader(_ homeToken: Token) -> String {
         let json = JSON(
             ["token":homeToken.token,
@@ -64,4 +65,5 @@ public class SecurityRequest {
         
         return request
     }
+ */
 }

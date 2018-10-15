@@ -69,8 +69,7 @@ public class SearchResourcesManager {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("1", forHTTPHeaderField: "x-auth-size")
         if clientSH.isLoggedIn() {
-            request.setValue("\(clientSH.getAuthenticationChallangeCreationTime())", forHTTPHeaderField: "x-auth-timestamp")
-            request.setValue(clientSH.buildXauth1HeaderWithHomeToken(), forHTTPHeaderField: "x-auth-1")
+            clientSH.renewTokenAndSetHeaders(request)
         }
         else {
             request.setValue("\(DateTime.Now.unixEpochTime()*1000)", forHTTPHeaderField: "x-auth-timestamp")

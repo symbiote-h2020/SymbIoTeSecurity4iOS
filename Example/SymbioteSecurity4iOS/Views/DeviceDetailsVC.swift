@@ -62,19 +62,8 @@ class DeviceDetailsVC: UIViewController {
                 opL.text = d.observedProperties.flatMap({$0}).joined(separator: ",");
             }
             
-//            if d.type == .ssp {
-//                NotificationCenter.default.addObserver(self, selector: #selector(tokenFromSSPNotificationReceived(_:)), name: SymNotificationName.SecurityTokenSSP, object: nil)
-//                GuestTokensManager.shared.getSSPGuestToken()
-//            }
-//            else if d.type == .core {
-//                NotificationCenter.default.addObserver(self, selector: #selector(tokenFromCoreNotificationReceived(_:)), name: SymNotificationName.SecurityTokenCore, object: nil)
-//                GuestTokensManager.shared.getCoreGuestToken()
-//            }
-            
             obseravtionsManager.getResourcesUrl(d.id)
-                
-            
-
+            showButtons()
         }
     }
     
@@ -91,19 +80,6 @@ class DeviceDetailsVC: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-
-    
-    
-    //MARK Tokens
-    func tokenFromSSPNotificationReceived(_ notification: Notification) {
-        logVerbose("DeviceDetialsVC: gets token from ssp - shows button")
-        showButtons()
-    }
-    
-    func tokenFromCoreNotificationReceived(_ notification: Notification) {
-        logVerbose("DeviceDetialsVC: gets token from core - shows button")
-        showButtons()
     }
     
     func hideButtons() {

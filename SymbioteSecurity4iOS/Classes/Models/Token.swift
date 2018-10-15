@@ -40,15 +40,15 @@ public class Token {
             if json["spk"].exists() { spk = json["spk"].stringValue  }
             if json["sub"].exists() { sub = json["sub"].stringValue  }
             if json["iat"].exists() { iat = json["iat"].stringValue  }
-        }
-        
+        }       
+    }
+    
+    ///authentication chalenge is only valid 1 minute, so it must be regenertated every request
+    public func renewAuthenticationChallenge() {
         let ac = buildAuthenticationChallenge()
         rawAuthenticationChalange = ac
         self.authenticationChallenge = CryptoHelper.jwt?.createAuthenticationChallenge(ac) ?? "error AuthenticationChallenge "
-        
     }
-    
-    
     
     /*
      in java:
@@ -71,8 +71,8 @@ public class Token {
         ac.sub = String(self.id)
         ac.iss = self.sub
         ac.ipk = self.spk
-        //hash =  SHA256(token+timestamp)
-        //let strToHash = self.token + iat + "000"
+        ac.iat = Epoch().getString()
+        ac.exp = Epoch(after: 60).getString()
         let strToHash = self.token + ac.iat + "000"
         ac.hash = sha256(strToHash) ?? ""
         
@@ -88,8 +88,8 @@ public class AuthenticationChallenge {
     public var sub: String = ""
     public var ipk: String = ""
     public var iss: String = ""
-    let iat = Epoch().getString()
-    let exp = Epoch(after: 60).getString()
+    public var iat: String = ""
+    public var exp: String = ""
     public var jit: Int = 42
     public var spk: String = ""
     public var hash: String = ""

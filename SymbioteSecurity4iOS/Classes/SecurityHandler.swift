@@ -13,7 +13,7 @@ import SymbioteIosUtils
 import iOSCSRSwift
 
 
-public let homeAamConstant = "https://symbiote-dev.man.poznan.pl/coreInterface" //dev tests "https://symbiote-dev.man.poznan.pl/coreInterface"
+public let homeAamConstant = "https://symbiote-open.man.poznan.pl/coreInterface" //dev tests "https://symbiote-dev.man.poznan.pl/coreInterface"
 
 /**
   SecurityHandler class is designe to work exactly as its counterpart on android /java code
@@ -290,8 +290,16 @@ public class SecurityHandler {
         }
     }
 
+    
+    public func renewTokenAndSetHeaders(_ request: NSMutableURLRequest) {
+        homeCredentials.homeToken?.renewAuthenticationChallenge()
+        
+        let iatTime =  (homeCredentials.homeToken?.rawAuthenticationChalange?.iat ?? "error time") + "000"
+        request.setValue("\(iatTime)", forHTTPHeaderField: "x-auth-timestamp")
+        request.setValue(buildXauth1HeaderWithHomeToken(), forHTTPHeaderField: "x-auth-1")
+    }
  
-    public func buildXauth1HeaderWithHomeToken() -> String {
+    private func buildXauth1HeaderWithHomeToken() -> String {
         let json = JSON(
             ["token":homeCredentials.homeToken?.token,
              "authenticationChallenge":homeCredentials.homeToken?.authenticationChallenge,
@@ -305,9 +313,4 @@ public class SecurityHandler {
         logVerbose(json.rawString(options: []))
         return json.rawString(options: []) ?? "couldn't build request json"
     }
-    
-    public func getAuthenticationChallangeCreationTime() -> String {
-        return (homeCredentials.homeToken?.rawAuthenticationChalange?.iat ?? "error time") + "000" 
-    }
-    
 }
