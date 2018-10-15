@@ -34,6 +34,15 @@ class Epoch {
     func getString() -> String {
         return "\(date.timeIntervalSince1970)".components(separatedBy: ".")[0]
     }
+    
+    public static func dateFromEpoch(str: String?) -> Date {
+        var unixTimestamp =  0.0
+        if let strEpoch = str {
+            unixTimestamp = Double(strEpoch) ?? 0.0
+        }
+        let date = Date(timeIntervalSince1970: unixTimestamp)
+        return date
+    }
 }
 
 public class JWT {

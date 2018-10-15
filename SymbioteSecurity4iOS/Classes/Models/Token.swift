@@ -27,6 +27,7 @@ public class Token {
     public var spk: String = ""
     public var sub: String = ""
     public var iat: String = ""
+    public var exp: String = ""
     
     public var rawAuthenticationChalange: AuthenticationChallenge?
     
@@ -40,6 +41,7 @@ public class Token {
             if json["spk"].exists() { spk = json["spk"].stringValue  }
             if json["sub"].exists() { sub = json["sub"].stringValue  }
             if json["iat"].exists() { iat = json["iat"].stringValue  }
+            if json["exp"].exists() { exp = json["exp"].stringValue  }
         }       
     }
     

@@ -290,6 +290,17 @@ public class SecurityHandler {
         }
     }
 
+    public func hasTokenExpired(expirationDate: inout Date) -> Bool {
+        let tokensExpTime = homeCredentials.homeToken?.exp
+        expirationDate = Epoch.dateFromEpoch(str: tokensExpTime)
+        let nowDate = Date()
+        if (nowDate > expirationDate) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
     
     public func renewTokenAndSetHeaders(_ request: NSMutableURLRequest) {
         homeCredentials.homeToken?.renewAuthenticationChallenge()

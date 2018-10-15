@@ -51,6 +51,11 @@ class ViewController: UIViewController {
         if clientSH.isLoggedIn() {
             loginStatusLabel.text = "You are logged in"
             loginStatusLabel.textColor = UIColor.green
+            var expDate = Date()
+            if clientSH.hasTokenExpired(expirationDate: &expDate) {
+                loginStatusLabel.textColor = UIColor.orange
+                loginStatusLabel.text = "Login Token has expired at \(expDate)"
+            }
         }
         else {
             loginStatusLabel.text = "You are not logged in - you can access only public resources"
