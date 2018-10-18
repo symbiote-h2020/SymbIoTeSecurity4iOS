@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "CertificateSigningRequestSwift.h"
 
 FOUNDATION_EXPORT double SymbioteSecurity4iOSVersionNumber;
 FOUNDATION_EXPORT const unsigned char SymbioteSecurity4iOSVersionString[];
